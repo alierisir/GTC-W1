@@ -4,10 +4,17 @@ import { DiscordIntegration } from "..";
 
 export const discordIntegrationUI = (components: OBC.Components, world: OBC.World) => {
   const textInput = document.createElement("bim-text-input");
+  const channelsInput = document.createElement("bim-dropdown");
+  channelsInput.required = true;
   const discordIntegration = components.get(DiscordIntegration);
+  for (const channel in discordIntegration.channels) {
+    const option = document.createElement("bim-option");
+    option.label = channel;
+    channelsInput.append(option);
+  }
   const sendMessage = () => {
     if (textInput.value.trim() === "") return;
-    discordIntegration.sendMessage(world, textInput.value);
+    discordIntegration.sendMessage(world, textInput.value, channelsInput.value[0]);
     textInput.value = "";
     modal.close();
   };
@@ -20,6 +27,7 @@ export const discordIntegrationUI = (components: OBC.Components, world: OBC.Worl
                 <bim-label style="white-space:normal;">
                     The Message you write here will be sent to the Discord channel associated with this project based on the settings.
                 </bim-label>
+                ${channelsInput}
                 ${textInput}
                 <bim-button @click=${sendMessage} label="Send" icon="iconoir:send-diagonal-solid"></bim-button>
             </bim-panel-section>

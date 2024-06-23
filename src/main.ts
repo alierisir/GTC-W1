@@ -107,11 +107,15 @@ fragments.onFragmentsLoaded.add(async (model) => {
 const projectInformationPanel = projectInformation(components);
 const elementDataPanel = elementData(components);
 
-const discordIntegration = components.get(DiscordIntegration);
-discordIntegration.setup({
-  webhookURL:
+const discordIntegration = new DiscordIntegration(components);
+discordIntegration.setup();
+
+discordIntegration.channels = {
+  "Design Team":
     "https://discordapp.com/api/webhooks/1254353910244708392/ab0ddlEG4OwV_AZpm3NUz6-JcWakmZetag5WESA8j5lsd0EozvTb-gTR24ED4jg1_gyB",
-});
+  "Site Team":
+    "https://discordapp.com/api/webhooks/1254521583909863495/CbtykwWplL4DQ37JsWBvVZRdO9aaOp6e7O6lURiC5XU2woqiE96mnrdQpTtqsqJ6tZav",
+};
 
 const toolbar = BUI.Component.create(() => {
   return BUI.html`

@@ -8,6 +8,8 @@ export class DiscordIntegration extends OBC.Component implements OBC.Configurabl
   static uuid = "8b91a773-0209-4052-a296-666bc2410273" as const;
   enabled = false;
 
+  channels: Record<string, string> = {};
+
   constructor(components: OBC.Components) {
     super(components);
     components.add(DiscordIntegration.uuid, this);
@@ -46,10 +48,12 @@ export class DiscordIntegration extends OBC.Component implements OBC.Configurabl
   isSetup = false;
   onSetup = new OBC.Event<DiscordIntegration>();
 
-  sendMessage(world: OBC.World, message: string) {
+  sendMessage(world: OBC.World, message: string, channel: string) {
     if (!this.isSetup) {
       throw new Error("DiscordIntegration: the component is not setup yet!");
     }
+    const url = this.channels[channel];
+    this.config.webhookURL = url;
     if (!(this.enabled && this.config.webhookURL)) return;
     const { renderer, scene, camera } = world;
     if (!renderer) {
