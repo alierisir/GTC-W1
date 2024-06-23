@@ -1,3 +1,4 @@
+import { DiscordIntegration, discordIntegrationUI } from "./bim-components/DiscordIntegration/index";
 import * as THREE from "three";
 import * as OBC from "@thatopen/components";
 import * as OBF from "@thatopen/components-front";
@@ -106,12 +107,19 @@ fragments.onFragmentsLoaded.add(async (model) => {
 const projectInformationPanel = projectInformation(components);
 const elementDataPanel = elementData(components);
 
+const discordIntegration = components.get(DiscordIntegration);
+discordIntegration.setup({
+  webhookURL:
+    "https://discordapp.com/api/webhooks/1254353910244708392/ab0ddlEG4OwV_AZpm3NUz6-JcWakmZetag5WESA8j5lsd0EozvTb-gTR24ED4jg1_gyB",
+});
+
 const toolbar = BUI.Component.create(() => {
   return BUI.html`
     <bim-toolbar>
       ${load(components)}
       ${camera(world)}
       ${selection(components, world)}
+      ${discordIntegrationUI(components, world)}
     </bim-toolbar>
   `;
 });

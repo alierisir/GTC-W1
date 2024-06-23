@@ -10,8 +10,8 @@
   --bim-ui_gray-10: hsl(210 10% 95%);
 
   /* Brand Colors */
-  --bim-ui_main-base: #6528d7;
-  --bim-ui_accent-base: #bcf124;
+  --bim-ui_main-base: #d78b28;
+  --bim-ui_accent-base: #244af1;
 
   /* Brand Colors Contrasts */
   --bim-ui_main-contrast: var(--bim-ui_gray-10);
@@ -83,4 +83,15 @@ bim-grid:not([floating]) > bim-panel {
 
 bim-grid[floating] > bim-toolbar {
   justify-self: center;
+}
+
+dialog {
+  background-color: transparent;
+  border: none;
+  margin: auto;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
 }
