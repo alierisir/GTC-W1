@@ -77,13 +77,15 @@ tilesLoader.culler.maxLostTime = 40000;
 const highlighter = components.get(OBF.Highlighter);
 highlighter.setup({ world });
 highlighter.zoomToSelection = true;
+highlighter.config.selectionColor.setRGB(255 / 255, 153 / 255, 0 / 255);
+highlighter.config.hoverColor.setRGB(36 / 255, 74 / 255, 241 / 255);
 
-const culler = components.get(OBC.Cullers).create(world);
-culler.threshold = 50;
+//const culler = components.get(OBC.Cullers).create(world);
+//culler.threshold = 50;
 
 world.camera.controls.restThreshold = 0.25;
 world.camera.controls.addEventListener("rest", () => {
-  culler.needsUpdate = true;
+  //culler.needsUpdate = true;
   tilesLoader.culler.needsUpdate = true;
 });
 
@@ -95,7 +97,7 @@ fragments.onFragmentsLoaded.add(async (model) => {
 
   for (const fragment of model.items) {
     world.meshes.add(fragment.mesh);
-    culler.add(fragment.mesh);
+    //culler.add(fragment.mesh);
   }
 
   world.scene.three.add(model);
@@ -111,10 +113,12 @@ const discordIntegration = new DiscordIntegration(components);
 discordIntegration.setup();
 
 discordIntegration.channels = {
-  "Design Team":
+  "Main Group":
     "https://discordapp.com/api/webhooks/1254353910244708392/ab0ddlEG4OwV_AZpm3NUz6-JcWakmZetag5WESA8j5lsd0EozvTb-gTR24ED4jg1_gyB",
   "Site Team":
     "https://discordapp.com/api/webhooks/1254521583909863495/CbtykwWplL4DQ37JsWBvVZRdO9aaOp6e7O6lURiC5XU2woqiE96mnrdQpTtqsqJ6tZav",
+  "Design Team":
+    "https://discordapp.com/api/webhooks/1254901699823403050/jo-4UroiD8BI1be7PTUeXQpp-JGiWD2OsTBlFJq5iqFgJxnBX3MTDydLixrFkfd--ZD3",
 };
 
 const toolbar = BUI.Component.create(() => {

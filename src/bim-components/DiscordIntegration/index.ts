@@ -67,7 +67,8 @@ export class DiscordIntegration extends OBC.Component implements OBC.Configurabl
       }
       const file = new File([blob], "screenshot.png");
       const data = new FormData();
-      data.set("content", message);
+      const date = new Date();
+      data.set("content", `${message}  (${date.toLocaleDateString()} - ${date.toLocaleTimeString()})`);
       data.set("screenshot", file);
       this._xhr.send(data);
     });
