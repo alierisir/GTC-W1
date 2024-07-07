@@ -37,13 +37,8 @@ export const discordIntegrationUI = (components: OBC.Components, world: OBC.Worl
   });
 
   document.body.append(modal);
-  return BUI.Component.create<BUI.ToolbarSection>(() => {
-    return BUI.html`
-        <bim-toolbar-section label="Communication" icon="lets-icons:chat-fill">
-            <bim-button @click=${() => {
+  return BUI.html`
+  <bim-button @click=${() => {
               modal.showModal();
-            }} label="Send Message" icon="flowbite:discord-solid"></bim-button>
-        </bim-toolbar-section>
-        `;
-  });
+            }} label="Send Message" icon="flowbite:discord-solid"></bim-button>`
 };

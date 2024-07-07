@@ -1,4 +1,4 @@
-import { DiscordIntegration, discordIntegrationUI } from "./bim-components/DiscordIntegration/index";
+
 import * as THREE from "three";
 import * as OBC from "@thatopen/components";
 import * as OBF from "@thatopen/components-front";
@@ -9,8 +9,8 @@ import settings from "./components/Panels/Settings";
 import load from "./components/Toolbars/Sections/Import";
 import camera from "./components/Toolbars/Sections/Camera";
 import selection from "./components/Toolbars/Sections/Selection";
-import { AppManager, Comments } from "./bim-components";
-import { commentsUI } from "./bim-components/Comments/src/user-interface";
+import { AppManager, Comments,DiscordIntegration,discordIntegrationUI } from "./bim-components";
+import { commentsUI } from "./bim-components/Comments/src";
 
 BUI.Manager.init();
 
@@ -125,36 +125,6 @@ discordIntegration.channels = {
 const comments = new Comments(components)
 comments.world=world
 
-comments.onCommentAdded.add(comment=>{
-  if (!comment.position) return
-  const commentBubble = BUI.Component.create(() => {
-    const commentsTable = document.createElement("bim-table")
-    commentsTable.headersHidden=true
-    commentsTable.expanded=true
-
-    const setTableData = () => {
-      const groupData:BUI.TableGroupData = {
-        data:{Comment:comment.text}
-      }
-      commentsTable.data=[groupData]
-    }
-
-    setTableData()
-    
-    return BUI.html`
-    <div>
-     <bim-panel style="min-width:0; max-width:20rem; max-height:20rem;border-radius:1rem;">
-      <bim-panel-section icon="material-symbols:comment" collapsed>
-        ${commentsTable}  
-      <bim-button label="Add reply"></bim-button>
-      </bim-panel-section>
-     </bim-panel>
-    </div>
-    `
-  })
-  const commentMark = new OBF.Mark(world, commentBubble)
-  commentMark.three.position.copy(comment.position)
-})
 
 const toolbar = BUI.Component.create(() => {
   return BUI.html`
@@ -162,8 +132,10 @@ const toolbar = BUI.Component.create(() => {
       ${load(components)}
       ${camera(world)}
       ${selection(components, world)}
-      ${discordIntegrationUI(components, world)}
-      ${commentsUI(components)}
+      <bim-toolbar-section label="Communication" icon="lets-icons:chat-fill">
+        ${discordIntegrationUI(components,world)}
+        ${commentsUI(components,world)}
+      </bim-toolbar-section>
     </bim-toolbar>
   `;
 });
