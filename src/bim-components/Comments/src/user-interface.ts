@@ -54,6 +54,8 @@ export const commentsUI = (components: OBC.Components, world: OBC.World) => {
     });
     const commentMark = new OBF.Mark(world, commentBubble);
     commentMark.three.position.copy(comment.position);
+    const btn = document.getElementById("comment-activation-btn") as BUI.Button;
+    btn.click();
   });
 
   const onCommentsEnabled = (e: Event) => {
@@ -63,6 +65,6 @@ export const commentsUI = (components: OBC.Components, world: OBC.World) => {
   };
 
   return BUI.html`
-    <bim-button label="Add Comments" icon="mi:add" @click=${onCommentsEnabled} ></bim-button>
+    <bim-button id="comment-activation-btn" label="Activate Comments" icon="mi:add" @click=${onCommentsEnabled} ></bim-button>
     `;
 };

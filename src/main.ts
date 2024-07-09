@@ -1,4 +1,3 @@
-
 import * as THREE from "three";
 import * as OBC from "@thatopen/components";
 import * as OBF from "@thatopen/components-front";
@@ -9,7 +8,7 @@ import settings from "./components/Panels/Settings";
 import load from "./components/Toolbars/Sections/Import";
 import camera from "./components/Toolbars/Sections/Camera";
 import selection from "./components/Toolbars/Sections/Selection";
-import { AppManager, Comments,DiscordIntegration,discordIntegrationUI } from "./bim-components";
+import { AppManager, Comments, DiscordIntegration, discordIntegrationUI } from "./bim-components";
 import { commentsUI } from "./bim-components/Comments/src";
 
 BUI.Manager.init();
@@ -77,7 +76,7 @@ tilesLoader.culler.maxLostTime = 40000;
 
 const highlighter = components.get(OBF.Highlighter);
 highlighter.setup({ world });
-highlighter.zoomToSelection = true;
+highlighter.zoomToSelection = false;
 highlighter.config.selectionColor.setRGB(255 / 255, 153 / 255, 0 / 255);
 highlighter.config.hoverColor.setRGB(36 / 255, 74 / 255, 241 / 255);
 
@@ -122,9 +121,8 @@ discordIntegration.channels = {
     "https://discordapp.com/api/webhooks/1254901699823403050/jo-4UroiD8BI1be7PTUeXQpp-JGiWD2OsTBlFJq5iqFgJxnBX3MTDydLixrFkfd--ZD3",
 };
 
-const comments = new Comments(components)
-comments.world=world
-
+const comments = new Comments(components);
+comments.world = world;
 
 const toolbar = BUI.Component.create(() => {
   return BUI.html`
@@ -133,8 +131,8 @@ const toolbar = BUI.Component.create(() => {
       ${camera(world)}
       ${selection(components, world)}
       <bim-toolbar-section label="Communication" icon="lets-icons:chat-fill">
-        ${discordIntegrationUI(components,world)}
-        ${commentsUI(components,world)}
+        ${discordIntegrationUI(components, world)}
+        ${commentsUI(components, world)}
       </bim-toolbar-section>
     </bim-toolbar>
   `;
