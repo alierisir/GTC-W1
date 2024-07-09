@@ -8,8 +8,9 @@ import settings from "./components/Panels/Settings";
 import load from "./components/Toolbars/Sections/Import";
 import camera from "./components/Toolbars/Sections/Camera";
 import selection from "./components/Toolbars/Sections/Selection";
-import { AppManager, Comments, DiscordIntegration, discordIntegrationUI } from "./bim-components";
+import { AppManager, Comments, DiscordIntegration, discordIntegrationUI} from "./bim-components";
 import { commentsUI } from "./bim-components/Comments/src";
+import { calculatedVolumeSetterUI } from "./bim-components/CalculatedVolumeSetter/src";
 
 BUI.Manager.init();
 
@@ -112,17 +113,9 @@ const elementDataPanel = elementData(components);
 const discordIntegration = new DiscordIntegration(components);
 discordIntegration.setup();
 
-discordIntegration.channels = {
-  "Main Group":
-    "https://discordapp.com/api/webhooks/1254353910244708392/ab0ddlEG4OwV_AZpm3NUz6-JcWakmZetag5WESA8j5lsd0EozvTb-gTR24ED4jg1_gyB",
-  "Site Team":
-    "https://discordapp.com/api/webhooks/1254521583909863495/CbtykwWplL4DQ37JsWBvVZRdO9aaOp6e7O6lURiC5XU2woqiE96mnrdQpTtqsqJ6tZav",
-  "Design Team":
-    "https://discordapp.com/api/webhooks/1254901699823403050/jo-4UroiD8BI1be7PTUeXQpp-JGiWD2OsTBlFJq5iqFgJxnBX3MTDydLixrFkfd--ZD3",
-};
-
 const comments = new Comments(components);
 comments.world = world;
+
 
 const toolbar = BUI.Component.create(() => {
   return BUI.html`
@@ -134,6 +127,7 @@ const toolbar = BUI.Component.create(() => {
         ${discordIntegrationUI(components, world)}
         ${commentsUI(components, world)}
       </bim-toolbar-section>
+      ${calculatedVolumeSetterUI(components,world)}
     </bim-toolbar>
   `;
 });
