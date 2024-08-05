@@ -8,7 +8,7 @@ import settings from "./components/Panels/Settings";
 import load from "./components/Toolbars/Sections/Import";
 import camera from "./components/Toolbars/Sections/Camera";
 import selection from "./components/Toolbars/Sections/Selection";
-import { AppManager, Comments, DiscordIntegration, discordIntegrationUI} from "./bim-components";
+import { AppManager, Comments, DiscordIntegration, discordIntegrationUI } from "./bim-components";
 import { commentsUI } from "./bim-components/Comments/src";
 import { calculatedVolumeSetterUI } from "./bim-components/CalculatedVolumeSetter/src";
 
@@ -116,7 +116,6 @@ discordIntegration.setup();
 const comments = new Comments(components);
 comments.world = world;
 
-
 const toolbar = BUI.Component.create(() => {
   return BUI.html`
     <bim-toolbar>
@@ -127,12 +126,12 @@ const toolbar = BUI.Component.create(() => {
         ${discordIntegrationUI(components, world)}
         ${commentsUI(components, world)}
       </bim-toolbar-section>
-      ${calculatedVolumeSetterUI(components,world)}
+      ${calculatedVolumeSetterUI(components, world)}
     </bim-toolbar>
   `;
 });
 
-const rightPanel = BUI.Component.create(() => {
+const leftPanel = BUI.Component.create(() => {
   return BUI.html`
     <bim-tabs switchers-full>
       <bim-tab name="project" label="Project" icon="ph:building-fill">
@@ -149,11 +148,11 @@ const app = document.getElementById("app") as BUI.Grid;
 app.layouts = {
   main: {
     template: `
-      "viewport rightPanel" 1fr
-      /1fr 20rem
+      "leftPanel viewport" 1fr
+      /30rem 1fr 
     `,
     elements: {
-      rightPanel,
+      leftPanel,
       viewport,
     },
   },
@@ -174,7 +173,7 @@ viewportGrid.layouts = {
     template: `
       "empty elementDataPanel" 1fr
       "toolbar elementDataPanel" auto
-      /1fr 24rem
+      /1fr 30rem
     `,
     elements: {
       toolbar,
