@@ -1,0 +1,25 @@
+{
+  "name": "gtc-w4",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alierisir/GTC-W1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alierisir/GTC-W1/issues"
+  },
+  "homepage": "https://github.com/alierisir/GTC-W1#readme",
+  "dependencies": {
+    "googleapis": "^140.0.1",
+    "web-ifc": "^0.0.56"
+  }
+}
