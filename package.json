@@ -19,7 +19,12 @@
   },
   "homepage": "https://github.com/alierisir/GTC-W1#readme",
   "dependencies": {
+    "@thatopen/components": "^2.1.27",
+    "@thatopen/fragments": "^2.1.6",
     "googleapis": "^140.0.1",
-    "web-ifc": "^0.0.56"
+    "three": "^0.167.1"
+  },
+  "devDependencies": {
+    "web-ifc": "0.0.55"
   }
 }

@@ -1,7 +1,5 @@
 import * as WEBIFC from "web-ifc";
 import * as fs from "fs";
-import { google } from "googleapis";
-import { appUser } from "./app-user.js";
 
 const ifcBuffer = fs.readFileSync(`./sample.ifc`);
 const ifcApi = new WEBIFC.IfcAPI();
@@ -19,10 +17,7 @@ for (const expressID of walls) {
     continue;
   }
 
-  const representationAttrs = ifcApi.GetLine(
-    modelID,
-    wallAttrs.Representation.value
-  );
+  const representationAttrs = ifcApi.GetLine(modelID, wallAttrs.Representation.value);
 
   for (const handle of representationAttrs.Representations) {
     const shapeAttrs = ifcApi.GetLine(modelID, handle.value);
@@ -36,16 +31,4 @@ for (const expressID of walls) {
   }
 }
 
-console.log(wallsArea);
-
-const sheets = google.sheets("v4");
-
-sheets.spreadsheets.values.update({
-  spreadsheetId: "1Kh6S9Kt8n6QO-EtcPRNRjGWXHU3rQAkq8ZhtxGU3Y58",
-  auth: appUser,
-  valueInputOption: "RAW",
-  range: "Quantities!D2",
-  requestBody: {
-    values: [[wallsArea]],
-  },
-});
+export default wallsArea;
