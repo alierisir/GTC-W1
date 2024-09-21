@@ -17,10 +17,7 @@ for (const expressID of walls) {
     continue;
   }
 
-  const representationAttrs = ifcApi.GetLine(
-    modelID,
-    wallAttrs.Representation.value
-  );
+  const representationAttrs = ifcApi.GetLine(modelID, wallAttrs.Representation.value);
 
   for (const handle of representationAttrs.Representations) {
     const shapeAttrs = ifcApi.GetLine(modelID, handle.value);
