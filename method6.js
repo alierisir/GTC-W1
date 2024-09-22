@@ -48,14 +48,10 @@ const getColumn = (element) => {
   const representationAttr = getLine(element.Representation.value);
   for (const handle of representationAttr.Representations) {
     const representation = getLine(handle.value);
-    //if (count == 201) console.log(count, representation); //hepsi için aynı
     const shape = getLine(representation.Items[0].value);
-    //console.log(shape);
     const repMap = getLine(shape.MappingSource.value);
     const source = getLine(repMap.MappedRepresentation.value);
     const sourceShape = getLine(source.Items[0].value);
-    //console.log(sourceShape); // sourceShape.Depth.value (uzunluk değeri)
-    //if (count == 200 || count == 201 || count == 252) console.log(count, source);
     if (source.RepresentationType.value !== "SweptSolid") return 0;
     const amount = sourceShape.Depth.value;
     return amount;
@@ -69,21 +65,6 @@ const getBeam = (element) => {
   const amount = extrusion.Depth.value;
   return amount;
 };
-
-//const getSlab = (element) => {
-//  const representationAttr = getLine(element.Representation.value);
-//  const shapeRep = getLine(representationAttr.Representations[0].value);
-//  const extrusion = getLine(shapeRep.Items[0].value);
-//  const sweptArea = getLine(extrusion.SweptArea.value);
-//  const outerCurve = getLine(sweptArea.OuterCurve.value);
-//  console.log(element);
-//};
-
-//const logTypes = (...sets) => {
-//  for (const set of sets) {
-//    for (const elem of set) console.log(elem);
-//  }
-//};
 
 //[IFCTYPE , key text , getter function]
 

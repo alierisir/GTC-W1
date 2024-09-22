@@ -21,7 +21,7 @@ let concreteColumnsIDs = [];
 let profiles = [];
 for (const column of columnsObjects) {
   const profile = column.ObjectType.value;
-  if (!profile.includes("Hormigón")) continue;
+  if (!profile.includes("Hormigón")) continue; //filter out steel columns
   concreteColumnsIDs.push(column.expressID);
   profiles.push(profile);
 }
@@ -32,7 +32,7 @@ const columnVolumes = measurement.getVolumeFromFragments(concreteFragments);
 //([key[0] + "0" + numbering.toString(), profile, "M", profileLength]);
 
 const concreteColumnQty = ["C35", "CC01", profiles[0], "M3", columnVolumes];
-const concreteSlabQty = ["C35", "S01", "11cm Concrete Slab", "M3", slabVolumes];
+const concreteSlabQty = ["C35", "S01", "Concrete Slab", "M3", slabVolumes];
 const concreteQty = [concreteColumnQty, concreteSlabQty];
 
 export default concreteQty;
