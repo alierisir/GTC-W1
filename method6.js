@@ -33,7 +33,7 @@ const getQuatities = (typeArray, posList) => {
         const amount = func(element);
         profileLength += amount;
       }
-      totalQtys.push([key[0] + "0" + numbering.toString(), profile, "M", profileLength]);
+      totalQtys.push(["S355JR", key[0] + "0" + numbering.toString(), profile, "M", profileLength]);
       numbering += 1;
     }
   }
@@ -98,6 +98,6 @@ const ifcTypes = [
 ];
 
 const posList = getAllTypes(ifcTypes, modelID); //gets all lines for each type
-const qtys = getQuatities(ifcTypes, posList); //calculates and returns quantities
+const steelQty = getQuatities(ifcTypes, posList); //calculates and returns quantities
 
-export default qtys;
+export default steelQty;

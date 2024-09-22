@@ -1,6 +1,7 @@
 import { google } from "googleapis";
 import { appUser } from "./app-user.js";
-import qtys from "./method6.js";
+import steelQty from "./method6.js";
+import concreteQty from "./method7.js";
 
 const sheets = google.sheets("v4");
 
@@ -10,6 +11,6 @@ sheets.spreadsheets.values.update({
   valueInputOption: "RAW",
   range: "Quantities!A2",
   requestBody: {
-    values: [...qtys],
+    values: [...steelQty, ...concreteQty],
   },
 });
