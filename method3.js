@@ -2,7 +2,7 @@ import * as OBC from "@thatopen/components";
 import * as WEBIFC from "web-ifc";
 import * as fs from "fs";
 
-const ifcBuffer = fs.readFileSync(`./sample.ifc`);
+const ifcBuffer = fs.readFileSync(`./HNS-CTL-MOD-EST-001.ifc`);
 const components = new OBC.Components();
 
 const ifcLoader = components.get(OBC.IfcLoader);

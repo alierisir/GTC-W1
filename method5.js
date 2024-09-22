@@ -1,7 +1,7 @@
 import * as WEBIFC from "web-ifc";
 import * as fs from "fs";
 
-const ifcBuffer = fs.readFileSync(`./sample.ifc`);
+const ifcBuffer = fs.readFileSync(`./HNS-CTL-MOD-EST-001.ifc`);
 const ifcApi = new WEBIFC.IfcAPI();
 await ifcApi.Init();
 const modelID = ifcApi.OpenModel(new Uint8Array(ifcBuffer));

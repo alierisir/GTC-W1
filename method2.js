@@ -3,7 +3,7 @@ import * as WEBIFC from "web-ifc";
 import { google } from "googleapis";
 import { appUser } from "./app-user.js";
 
-const ifcBuffer = fs.readFileSync("./sample.ifc");
+const ifcBuffer = fs.readFileSync("./HNS-CTL-MOD-EST-001.ifc");
 const ifcApi = new WEBIFC.IfcAPI();
 await ifcApi.Init();
 const modelID = ifcApi.OpenModel(new Uint8Array(ifcBuffer));
