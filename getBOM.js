@@ -1,7 +1,7 @@
 import { google } from "googleapis";
 import { appUser } from "./app-user.js";
-import steelQty from "./method6.js";
-import concreteQty from "./method7.js";
+import steelQty from "./method6.js"; //gets lengths using WEB-IFC API
+import concreteQty from "./method7.js"; //gets volumes using components library of That Open Engine
 
 const sheets = google.sheets("v4");
 

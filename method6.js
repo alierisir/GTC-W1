@@ -1,6 +1,7 @@
 import * as WEBIFC from "web-ifc";
 import * as fs from "fs";
 
+//Custom functions
 const getAllTypes = (typeArray, modelID) => {
   const poses = {};
   for (const [ifcType, text] of typeArray) {
@@ -16,7 +17,7 @@ const getAllTypes = (typeArray, modelID) => {
     poses[text] = set;
   }
   return poses;
-};
+}; //lists all profile types used
 
 const getQuatities = (typeArray, posList) => {
   let totalQtys = [];
@@ -38,11 +39,11 @@ const getQuatities = (typeArray, posList) => {
     }
   }
   return totalQtys;
-};
+}; //calculates the total quantity for each profile
 
 const getLine = (expressID) => {
   return ifcApi.GetLine(modelID, expressID);
-};
+}; //returns the line with the related entity
 
 const getColumn = (element) => {
   const representationAttr = getLine(element.Representation.value);
@@ -56,7 +57,7 @@ const getColumn = (element) => {
     const amount = sourceShape.Depth.value;
     return amount;
   }
-};
+}; //returns the length of a single column
 
 const getBeam = (element) => {
   const representationAttr = getLine(element.Representation.value);
@@ -64,21 +65,20 @@ const getBeam = (element) => {
   const extrusion = getLine(shapeRep.Items[0].value);
   const amount = extrusion.Depth.value;
   return amount;
-};
-
-//[IFCTYPE , key text , getter function]
+}; //returns the length of a single beam
 
 const ifcBuffer = fs.readFileSync("./HNS-CTL-MOD-EST-001.ifc");
 const ifcApi = new WEBIFC.IfcAPI();
 await ifcApi.Init();
 const modelID = ifcApi.OpenModel(new Uint8Array(ifcBuffer));
 
+//[IFCTYPE , key text , function]
 const ifcTypes = [
   [WEBIFC.IFCBEAM, "Beams", getBeam],
   [WEBIFC.IFCCOLUMN, "Columns", getColumn],
 ];
 
-const posList = getAllTypes(ifcTypes, modelID); //gets all lines for each type
+const posList = getAllTypes(ifcTypes, modelID); //lists all profile types used
 const steelQty = getQuatities(ifcTypes, posList); //calculates and returns quantities
 
 export default steelQty;
